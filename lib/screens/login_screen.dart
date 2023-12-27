@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -53,6 +54,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 // Validate will return true if the form is valid, or false if
                 // the form is invalid.
                 if (_formKey.currentState!.validate()) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
                   print('Email : $_email');
                   print('Password : $_password');
                 }
