@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
@@ -20,6 +19,15 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          Center(
+            child: Container(
+              height: 150,
+              child: Padding(
+                padding: EdgeInsets.all(20), 
+                child: Image.network('https://picsum.photos/250?image=1'),
+              ),
+            )
+          ),
           TextFormField(
             decoration: const InputDecoration(
               hintText: 'Input email',
@@ -58,8 +66,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 // Validate will return true if the form is valid, or false if
                 // the form is invalid.
                 if (_formKey.currentState!.validate()) {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
                   print(_email);
                   print('Password : $_password');
                 }

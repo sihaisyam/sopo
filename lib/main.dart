@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sopo/screens/home_screen.dart';
+import 'package:sopo/screens/login_screen.dart';
 // import 'package:sopo/screens/login_screen.dart';
 
 void main() {
@@ -24,10 +25,10 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.orange,
       ),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Login Page')),
+        appBar: AppBar(title: const Text('SOPO')),
         body: const HomeScreen(),
       ),
     );
