@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
       ),
       home: Scaffold(
-        appBar: AppBar(title: const Text('SOPO')),
+        // appBar: AppBar(title: const Text('SOPO')),
         body: const HomeScreen(),
       ),
     );
