@@ -10,15 +10,22 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _email = '';
-  String _password = '';
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
+  String _email = 'haisyam@gmail.com';
+  String _password = '12345';
 
   @override
   Widget build(BuildContext context) {
-    return Form(
+    return Scaffold(
+      key: _scaffoldKey,
+      body: Container(
+      margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+      child: Form(
       key: _formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           TextFormField(
             decoration: const InputDecoration(
@@ -30,9 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
               }
               return null;
             },
-             onSaved: (value) => setState(() {
-                  _email = value!;
-                })
+            controller: emailController,
           ),
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -47,9 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 },
                 obscureText: true,
-                onSaved: (value) => setState(() {
-                  _password = value!;
-                })
+                controller: passController,
               )),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -58,10 +61,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 // Validate will return true if the form is valid, or false if
                 // the form is invalid.
                 if (_formKey.currentState!.validate()) {
-                  Navigator.push(context,
+                  
+                  print('Email :${emailController.text}' );
+                  print('Password : ${passController.text}');
+
+                  if (emailController.text == _email && passController.text == _password) {
+                    print('Login Berhasil');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Login Berhasil'), backgroundColor: Colors.green),
+                      );
+                    Navigator.push(context,
                       MaterialPageRoute(builder: (context) => HomeScreen()));
-                  print(_email);
-                  print('Password : $_password');
+                  }else if (emailController.text != _email && passController.text == _password) {
+                    print('Email or Password Invalid!');
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Email or Password Invalid'), backgroundColor: Colors.redAccent),
+                      );
+                  }else if (emailController.text == _email && passController.text != _password) {
+                    print('Email or Password Invalid!');
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Email or Password Invalid'), backgroundColor: Colors.redAccent),
+                      );
+                  }else {
+                    print('Account not found!');
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Email or Password Invalid'), backgroundColor: Colors.yellow),
+                      );
+                  }
+
                 }
               },
               child: const Text('Submit'),
@@ -69,6 +96,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ],
       ),
+    ),
+    ),
     );
   }
 }

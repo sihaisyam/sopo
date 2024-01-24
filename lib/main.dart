@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sopo/screens/home_screen.dart';
 import 'package:sopo/screens/login_screen.dart';
-// import 'package:sopo/screens/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         // appBar: AppBar(title: const Text('SOPO')),
-        body: const HomeScreen(),
+        body: const LoginScreen(),
       ),
     );
   }
